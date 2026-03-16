@@ -16,14 +16,13 @@ for park_name, url in parks.items():
     data = response.json()
     for land in data.get("lands", []):
         for ride in land.get("rides", []):
-            if ride.get("is_open"):  # only log open rides
-                rows.append({
-                    "timestamp": timestamp,
-                    "park": park_name,
-                    "ride": ride.get("name"),
-                    "wait_time": ride.get("wait_time"),
-                    "is_open": ride.get("is_open")
-                })
+            rows.append({
+                "timestamp": timestamp,
+                "park": park_name,
+                "ride": ride.get("name"),
+                "wait_time": ride.get("wait_time"),
+                "is_open": ride.get("is_open")
+            })
 
 if not rows:
     print("No open rides, skipping.")
