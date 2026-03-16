@@ -35,8 +35,18 @@ df = pd.concat([pd.read_csv(f) for f in all_files])
 # Filter to only the rides you want
 df = df[df["ride"].isin(rides_to_track)]
 
-# Pivot so each ride is a column, timestamp is the row
-pivot = df.pivot_table(index="timestamp", columns="ride", values="wait_time")
+# Pivot for wait times
+wait_times = df.pivot_table(index="timestamp", columns="ride", values="wait_time")
 
-pivot.to_csv("ride_analysis.csv")
+# Pivot for is_open
+is_open = df.pivot_table(index="timestamp", columns="ride", values="is_open")
+
+# Rename columns so they don't clash
+wait_times.columns = [f"{col}_wait" for col in wait_times.columns]
+is_open.columns = [f"{col}_open" for col in is_open.columns]
+
+# Combine both
+result = pd.concat([wait_times, is_open], axis=1).sort_index()
+
+result.to_csv("ride_analysis.csv")
 print("Saved to ride_analysis.csv")
