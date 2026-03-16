@@ -1,22 +1,17 @@
-name: Collect Wait Times
+name: Collect Universal Wait Times
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/15 * * * *'  # every 15 minutes
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  run-scraper:
+  scrape-parks:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -28,10 +23,11 @@ jobs:
         pip install pandas requests
 
     - name: Run scraper
-      run: python scraper.py
+      run: |
+        python scraper.py
 
-    - name: Upload wait_times.csv
-      uses: actions/upload-artifact@3
+    - name: Upload wait_times.csv as artifact
+      uses: actions/upload-artifact@v3
       with:
         name: wait-times
-        path: wait-times.csv
+        path: wait_times.csv
