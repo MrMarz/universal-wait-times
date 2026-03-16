@@ -6,7 +6,7 @@ import os
 parks = {
     "Islands of Adventure": "https://queue-times.com/parks/64/queue_times.json",
     "Universal Studios Florida": "https://queue-times.com/parks/65/queue_times.json",
-    "Epic Universe": "https://queue-times.com/parks/83/queue_times.json"
+    "Epic Universe": "https://queue-times.com/parks/334/queue_times.json"
 }
 
 timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
