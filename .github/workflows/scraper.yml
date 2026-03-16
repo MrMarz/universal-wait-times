@@ -2,7 +2,7 @@ name: Collect Universal Wait Times
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # every 15 minutes
+    - cron: '0 * * * *'  # every hour
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -25,8 +27,13 @@ jobs:
       - name: Run scraper
         run: python scraper.py
 
-      - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: wait-times
-          path: wait_times.csv
+      - name: Commit and force push CSV
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add wait_times.csv
+          git commit -m "Update wait times" || echo "No changes"
+
+          # Force push to overwrite remote branch
+          git push --force origin main
