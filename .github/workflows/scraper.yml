@@ -1,19 +1,18 @@
 name: Collect Universal Wait Times
-
 on:
   schedule:
-    - cron: '0 * * * *'  # every hour
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
   scrape-parks:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,8 +20,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: |
-          pip install pandas requests
+        run: pip install pandas requests
 
       - name: Run scraper
         run: python scraper.py
@@ -31,7 +29,8 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git pull --rebase origin main
           git add wait_times.csv
-          git commit -m "Update wait times" || echo "No changes"
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Update wait times"
+          git pull --rebase origin main
           git push origin main
