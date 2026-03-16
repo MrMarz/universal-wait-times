@@ -32,5 +32,4 @@ jobs:
           git add wait_times.csv
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "Update wait times"
-          git pull --rebase origin main
-          git push origin main
+          git push --force origin main
