@@ -4,9 +4,28 @@ import os
 
 # Specify the rides you want to analyze
 rides_to_track = [
-    "Hagrid's Magical Creatures Motorbike Adventure",
-    "Velocicoaster",
-    "Hollywood Rip Ride Rockit"
+    "Jurassic Park River Adventureâ„¢",
+    "Jurassic World VelociCoaster",
+    "Skull Island: Reign of Kongâ„¢",
+    "Doctor Doom's FearfallÂ®",
+    "The Amazing Adventures of Spider-ManÂ®",
+    "The Incredible Hulk CoasterÂ®",
+    "The Cat in The Hatâ„¢",
+    "Hagrid's Magical Creatures Motorbike Adventureâ„¢",
+    "Hogwartsâ„¢ Express - Hogsmeadeâ„¢ Station",
+    "Popeye & Bluto's Bilge-Rat BargesÂ®",
+    "Despicable Me Minion Mayhemâ„¢",
+    "Revenge of the Mummyâ„¢",
+    "Hollywood Rip Ride Rockitâ„¢",
+    "Harry Potter and the Escape from Gringottsâ„¢",
+    "Curse of the Werewolf",
+    "Monsters Unchained: The Frankenstein Experiment",
+    "Dragon Racer's Rally",
+    "Hiccup Wing Glider",
+    "Meet Toothless and Friends",
+    "Bowser Jr. Challenge",
+    "Mario Kartâ„¢: Bowser's Challenge",
+    "The Wizarding World of Harry Potter — Ministry of Magic"
 ]
 
 # Load all daily CSVs
