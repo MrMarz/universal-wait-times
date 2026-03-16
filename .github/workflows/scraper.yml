@@ -1,8 +1,8 @@
 name: Collect Universal Wait Times
 on:
   schedule:
-    - cron: '0,30 12-23 * * *'  # 8am-10pm Eastern (UTC)
-    - cron: '0,30 0-2 * * *'    # 8pm-10pm Eastern
+    - cron: '0,15 12-23 * * *'  # 8am-10pm Eastern (UTC)
+    - cron: '0,15 0-2 * * *'    # 8pm-10pm Eastern
   workflow_dispatch:
 
 concurrency:
