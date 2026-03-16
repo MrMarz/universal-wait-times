@@ -30,4 +30,10 @@ if not rows:
     exit()
 
 df = pd.DataFrame(rows)
-df.to_csv("wait_times.csv", mode='a', header=not __import__('os').path.exists("wait_times.csv"), index=False)
+
+date_str = datetime.utcnow().strftime("%Y-%m-%d")
+filename = f"data/wait_times_{date_str}.csv"
+
+import os
+os.makedirs("data", exist_ok=True)
+df.to_csv(filename, mode='a', header=not os.path.exists(filename), index=False)
